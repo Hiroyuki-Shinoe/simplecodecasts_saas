@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  resources :contacts 
   # resourcesを使ったroutingは、index create new edit show update destroyの７つのroutingを自動で行なってくれる
+  resources :contacts 
+  # get '/contacts' => 'contacts#index'
+  # post '/contacts' => 'contacts#create'
+  # get '/contacts/new' => 'contacts#new'
+  # get '/contacts/:id/edit' => 'contacts#edit'
+  # get '/contacts/:id' => 'contacts#show'
+  # patch '/contacts/:id' => 'contacts#update'
+  # put '/contacts/:id' => 'contacts#update'
+  # delete '/contacts/:id' => 'contacts#'
   get '/about' => 'pages#about'
   root 'pages#home'
   # The priority is based upon order of creation: first created -> highest priority.

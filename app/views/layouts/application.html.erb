@@ -34,6 +34,10 @@
 </nav>
 
 <div class="container">
+  <% flash.each do | key, value | %>
+  <!-- "alert alert-success" と "alert alert-danger"はbootstrapのclass -->
+    <%= content_tag :div, value, class: "alert alert-#{key}" %>
+  <% end %>
   <%= yield %>
 </div>
 
