@@ -8,6 +8,12 @@ class ContactsController < ApplicationController
         
         # if @contact.saveで@contactをデータベースに保存すると同時に、保存が成功したか(true)どうか(false)の判定を実施している
         if @contact.save
+            name = params[:contact][:name]
+            email = params[:contact][:email]
+            body = params[:contact][:comments]
+            
+            ContactMailer.contact_email(name, email, body).deliver
+            
             # hashオブジェクトflashにkey( :success )とvalue( 'Message sent.' )のペアを入れている。
             flash[:success] = 'Message sent.'
             redirect_to new_contact_path
