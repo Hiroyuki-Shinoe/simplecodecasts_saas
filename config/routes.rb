@@ -1,5 +1,22 @@
 Rails.application.routes.draw do
+  # devise gemで作成されたdevise_for :usersは、多くのroutingを自動で作成してくれている。
   devise_for :users
+  # get '/users/sign_in' => 'devise/sessions#new' これはdeviseディレクトリの中のsessionsコントローラーのnewアクションへ渡している
+  # post '/users/sign_in' => 'devise/sessions#create'
+  # delete '/users/sign_out' => 'devise/sessions#destroy'
+  # post '/users/password' => 'devise/passwords#create'
+  # get '/users/password/new' => 'devise/passwords#new'
+  # get '/users/password/edit' => 'devise/passwords#edit'
+  # patch '/users/password' => 'devise/passwords#update'
+  # put '/users/password' => 'devise/passwords#update'
+  # get '/users/cancel' => 'devise/registrations#cancel'
+  # post '/users' => 'devise/registrations#create'
+  # get '/users/sign_up' => 'devise/registrations#new'
+  # get '/users/edit' => 'devise/registrations#edit'
+  # patch '/users' => 'devise/registrations#update'
+  # put '/users' => 'devise/registrations#update'
+  # delete '/users' => 'devise/registrations#destroy'
+  
   # resourcesを使ったroutingは、index create new edit show update destroyの７つのroutingを自動で行なってくれる
   resources :contacts 
   # get '/contacts' => 'contacts#index'
@@ -9,7 +26,7 @@ Rails.application.routes.draw do
   # get '/contacts/:id' => 'contacts#show'
   # patch '/contacts/:id' => 'contacts#update'
   # put '/contacts/:id' => 'contacts#update'
-  # delete '/contacts/:id' => 'contacts#'
+  # delete '/contacts/:id' => 'contacts#destroy'
   get '/about' => 'pages#about'
   root 'pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
