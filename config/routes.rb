@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # resourcesを使ったroutingは、index create new edit show update destroyの７つのroutingを自動で行なってくれる
   resources :contacts 
   # get '/contacts' => 'contacts#index'
