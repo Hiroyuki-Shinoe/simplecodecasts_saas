@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  
 <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
   <div class='container'>
     <div class="navbar-header">
@@ -24,6 +25,20 @@
       <% end %>
     </div>
     <div class="collapse navbar-collapse" id="main-nav-collapse">
+      <div class="nav navbar-nav navbar-right">
+        <!--ログインの有無で表示させる内容を変える-->
+        <!-- ここのifやelse、endを%=と書かず%だけにしているのは、htmlファイルの１部として表示させる必要が無いから -->
+        <% if current_user %>
+          <!-- destroy_user_session_pathは事前にprefixとして指定されている。rake routesで確認できる。-->
+          <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-primary navbar-btn' %>
+        <% else %>
+          <!--controller名は単数形-->
+          <!-- new_user_session_pathとnew_user_registration_pathも事前にprefixとして指定されている。rake routesで確認してから書く。  -->
+          <%= link_to "Log In", new_user_session_path, class: 'btn btn-primary navbar-btn', method: :get %>
+          <a href="/users/sign_in" class="btn btn-primary navbar-btn">Log In</a>
+          <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-success navbar-btn', method: :get %>
+        <% end %>
+      </div>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "About", about_path %></li>
         <!--<li><%= link_to "Contact Us", "/contacts/new" %></li>-->
