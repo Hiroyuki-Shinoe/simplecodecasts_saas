@@ -35,7 +35,7 @@
           <!--controller名は単数形-->
           <!-- new_user_session_pathとnew_user_registration_pathも事前にprefixとして指定されている。rake routesで確認してから書く。  -->
           <%= link_to "Log In", new_user_session_path, class: 'btn btn-primary navbar-btn', method: :get %>
-          <a href="/users/sign_in" class="btn btn-primary navbar-btn">Log In</a>
+          <!--<a href="/users/sign_in" class="btn btn-primary navbar-btn">Log In</a>-->
           <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-success navbar-btn', method: :get %>
         <% end %>
       </div>
