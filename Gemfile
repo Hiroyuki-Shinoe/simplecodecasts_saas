@@ -26,8 +26,14 @@ gem 'coffee-rails', '4.0.0'
 # gem 'therubyracer',  platforms: :ruby
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# turbolinks gemはstripe gemとコンフリクトを起こす可能性があるので、コメントアウトしておく
+# turbolinksを使用するには、他にも多くの注意点がある。 http://qiita.com/seri_k/items/164accd9ef8ddb4a942e
+# turbolinksを無効にする際には、gemfileの変更と、app/views/layouts/application.html.erbのhead内の変更、
+# app/assets/javascripts/application.js内の変更の3つを行う必要がある
+# gem 'turbolinks'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -36,7 +42,15 @@ gem 'sdoc', '0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 # ユーザーログイン時の認証を行うgem
+# Use devise for user authentication
 gem 'devise', '3.4.1'
+
+# 安全にクレジットカード決済機能を追加できるgem
+# Use stripe for handling payments 
+gem 'stripe', '1.16.1'
+
+# Use figaro to hide secret keys
+gem 'figaro', '1.0.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '3.1.7'
