@@ -49,6 +49,10 @@ gem 'devise', '3.4.1'
 # Use stripe for handling payments 
 gem 'stripe', '1.16.1'
 
+# figaro gemはgithub等に公開してはいけないものが有るときに使う
+# gemに追加して、bundle install後、bundle exec figaro installを打つと、
+# config/application.ymlが作成され、.gitignoreに自動的にconfig/application.ymlが追加される
+# .gitignoreに記述されているファイルはgitに保存されないので、オンライン上に公開されなくてすむ
 # Use figaro to hide secret keys
 gem 'figaro', '1.0.0'
 
