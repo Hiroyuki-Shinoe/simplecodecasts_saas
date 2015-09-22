@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   # devise gemで作成されたdevise_for :usersは、多くのroutingを自動で作成してくれている。
-  devise_for :users
+  # devise gemが備えている機能を書き換えるために、
+  # devise gemが持っているDevis::RegistrationsControllerを継承したクラス 
+  # Users::RegistrationsControllerを作成し、それの内容を記述することで上書きしたので、
+  # routesにも、controllerを追記する 
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   # get '/users/sign_in' => 'devise/sessions#new' これはdeviseディレクトリの中のsessionsコントローラーのnewアクションへ渡している
   # post '/users/sign_in' => 'devise/sessions#create'
   # delete '/users/sign_out' => 'devise/sessions#destroy'
