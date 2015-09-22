@@ -54,6 +54,8 @@ $(document).ready(function(){
         var f = $("#new_user");
         
         // Add the token to the form:
+        // stripe_card_token の定義は、app/models/user.rb の中で行われている。
+        // アクセッサ−が書かれているため、Userクラスの外でも簡単に呼び出せる。
         f.append('<input type="hidden" name="user[stripe_card_token]" value="' + token + '" />');
         
         // Submit the form:
