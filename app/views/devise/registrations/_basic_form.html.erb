@@ -1,5 +1,15 @@
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<!-- _basic_formと_pro_formで違うIDにする為に、IDを記述  -->
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {id: 'basic_form'}) do |f| %> 
     <%= devise_error_messages! %>
+    
+    <!-- このフォームを通してユーザーが入力した時、basic planフォームから入力されたか、
+    pro planフォームから入力されたかをサーバーサイドで識別できないといけない  -->
+    <!-- そこで、query stringを使って、サーバーサイドに識別情報を渡す記述を書く -->
+    <!-- query stringとはクライアントからサーバーへパラメータを渡す時に使われるもの。
+    URLの末尾に「?」マークを付け、続けて「名前=値」の形式で記述 -->
+    <%= hidden_field_tag 'plan', params[:plan] %>
+    <!--ここでは、new_user_registration_path(plan: @basic_plan.id)のリンクから来たら、value = 1 となる -->
+    <!-- また、new_user_registration_path(plan: @pro_plan.id)のリンクから来たら、value = 2 となる -->
 
     <div class="field form-group">
       <%= f.label :email %><br />

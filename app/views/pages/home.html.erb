@@ -9,7 +9,7 @@
             <h2 class="text-center">Basic Membership</h2>
             <h4>Sign up for free and get basic access to the community.</h4>
             <br>
-            <!-- (plan: @basic_plan.id) は (plan: 1)と書いても同じ-->
+            <!-- (plan: @basic_plan.id) は (plan: 1)や(Plan.find(1).id)と書いても同じ-->
             <%= link_to "Sign up with Basic", new_user_registration_path(plan: @basic_plan.id) , class: "btn btn-primary btn-lg btn-block" %>
         </div>
     </div>
@@ -17,6 +17,7 @@
         <div class="well">
             <h2 class="text-center">Pro Membership</h2>
             <h4>Sign up for the pro account for $10/month and get access to the community and contact information!</h4>
+            <!-- (plan: @pro_plan.id) は (plan: 2)や(Plan.find(2).id)と書いても同じ-->
             <%= link_to "Sign up with Pro", new_user_registration_path(plan: @pro_plan.id) , class: "btn btn-success btn-lg btn-block" %>
         </div>
     </div>

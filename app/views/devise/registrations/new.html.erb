@@ -2,6 +2,7 @@
   <div class="col-md-6 col-md-offset-3 text-center">
     <!-- paramsハッシュのplanというkeyに対して、valueが2の時とそれ以外で条件分岐するよう設定 -->
     <!-- paramsとはrails内で事前に作成されているハッシュ http://goo.gl/OQ1FHD  -->
+    <!-- query stringが plan = 2の時とそれ以外で分岐する処理を行っている -->
     <% if params[:plan] == "2" %>
       <h1>Pro Account</h1>
       <p>Sign up for the pro account for $10/month<br>and get access to the community and contact information!</p>
