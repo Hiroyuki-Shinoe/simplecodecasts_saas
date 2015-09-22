@@ -7,7 +7,13 @@
   <!--<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>-->
   <!--<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>-->
   <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag "https://js.stripe.com/v2/", type: 'text/javascript' %>
   <%= javascript_include_tag 'application' %>
+  <!-- stripeのAPIキーを読み込む記述を書く。読み込む先は config/initializers/stripe.rb 
+  だが、実際にキーが書いてあるのは、  config/application.yml の中。config/application.ymlを.gitignoreに記述することで、
+  キーがgithubなどで公開されないようにしている。ただ、ここに記述しているのはpublishable keyつまり公開キー。
+  なので、ブラウザー上でもhead内で見ることができる。-->
+  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
   
   <%= csrf_meta_tags %>
 </head>
