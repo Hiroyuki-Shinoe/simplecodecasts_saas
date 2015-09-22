@@ -53,6 +53,9 @@ $(document).ready(function(){
         // _pro_form.html.erbのフォーム全体の枠組みを指定しているということ。
         var f = $("#new_user");
         
+        // Get the token from the response:
+        var token = response.id;
+        
         // Add the token to the form:
         // stripe_card_token の定義は、app/models/user.rb の中で行われている。
         // アクセッサ−が書かれているため、Userクラスの外でも簡単に呼び出せる。
