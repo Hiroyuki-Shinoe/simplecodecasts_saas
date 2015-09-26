@@ -8,8 +8,9 @@ class ApplicationController < ActionController::Base
   # rails 4以降、strong parameterによって、個別に記述したデータしかフォームから取得できないようになっている
   # そこで、データテーブルにカラムを増やし、そのカラムに入れるデータをフォームから取得しようとする際には、
   # その都度、フォームからの取得を許可する記述が必要となる。
-  # 今回は、userテーブルへ stripe_customer_token というカラムを追加し、
-  # そこへ入れるデータをフォームから取得する必要があるための記述。
+  # 今回は、_pro_form.html.erbのフォームに、app/assets/javascripts/users.jsを通して追加された、
+  # <input type="hidden" name="user[stripe_card_token]" value="' + token + '" />から
+  # データを取得するため。
   # devise gemに関係するため、特殊な書き方である可能性あり。
   # https://github.com/plataformatec/devise
   protected

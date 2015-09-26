@@ -23,11 +23,11 @@ Rails.application.routes.draw do
   
   # resourcesを使ったroutingは、index create new edit show update destroyの７つのroutingを自動で行なってくれる
   resources :contacts 
-  # get '/contacts' => 'contacts#index'
+  # get '/contacts' => 'contacts#index' => 'contacts_path'
   # post '/contacts' => 'contacts#create'
-  # get '/contacts/new' => 'contacts#new'
-  # get '/contacts/:id/edit' => 'contacts#edit'
-  # get '/contacts/:id' => 'contacts#show'
+  # get '/contacts/new' => 'contacts#new' => 'new_contact_path'
+  # get '/contacts/:id/edit' => 'contacts#edit' => 'edit_contact_path'
+  # get '/contacts/:id' => 'contacts#show' => 'contact_path'
   # patch '/contacts/:id' => 'contacts#update'
   # put '/contacts/:id' => 'contacts#update'
   # delete '/contacts/:id' => 'contacts#destroy'

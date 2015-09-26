@@ -8,7 +8,8 @@ $(document).ready(function(){
     // ID form-submit-btnは _pro_form.html.erbのsubmit buttonに書かれている。
     $("#form-submit-btn").click(function(event){
         // Prevent form's default behavior so that it does not yet submit
-        // Id form-submit-btnを持つ要素が起こす動作を停止させる
+        // Id form-submit-btnを持つ要素が起こす動作を停止させ、
+        // 一旦サーバー側へデータ送信をさせないようにする
         event.preventDefault();
         // Disable button to prevent additional clicks
         // type = submitのinput要素を機能させなくして、ボタンを2回以上押されることのないようにする。
