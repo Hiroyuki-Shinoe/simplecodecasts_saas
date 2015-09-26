@@ -14,7 +14,9 @@ class User < ActiveRecord::Base
   def save_with_payment
     # フォームで入力されたものが適切であれば、処理を実行する。
     if valid?
-      # stripeサーバーへデータを送るとともに、stripeがproアカウントユーザーに利用料を課金する。
+      # stripeサーバーへユーザーに関するデータ( email, plan_id, stripe_card_token)を送る。
+      # stripeサーバーは customer を作成し、customer_idを返してくる。
+      # stripeがproアカウントユーザーに利用料を課金する。
       customer = Stripe::Customer.create(description: email, plan: plan_id, card: stripe_card_token)
       # stripeサーバーからユーザー(stripe内ではcustomer)のidが送り返されてくる
       self.stripe_customer_token = customer.id
