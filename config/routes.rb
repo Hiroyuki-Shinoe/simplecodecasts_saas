@@ -21,6 +21,12 @@ Rails.application.routes.draw do
   # put '/users' => 'devise/registrations#update'
   # delete '/users' => 'devise/registrations#destroy'
   
+  # profileのrouteを記述する際に、users/:user_id/profile などのurlで
+  # アクセスできるようにするためにnest化する。
+  resources :users do
+    resource :profile
+  end
+  
   # resourcesを使ったroutingは、index create new edit show update destroyの７つのroutingを自動で行なってくれる
   resources :contacts 
   # get '/contacts' => 'contacts#index' => 'contacts_path'
