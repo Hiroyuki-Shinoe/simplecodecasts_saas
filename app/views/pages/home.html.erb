@@ -1,3 +1,11 @@
+<!-- userが自分のprofileを入力するフォームページへのリンクを作成する。
+現在ログインしているユーザーを識別できるように、parameterとして current_user を書いておく。
+current_user はuserオブジェクトの情報を取得するdevise gemのヘルパーメソッド。
+if current_user はログインしている場合にのみ、表示するという記述。ログアウトしていると表示されなくなる。-->
+<%= link_to "Create your profile!", new_user_profile_path(current_user) if current_user %> 
+<!--上の１行は下のようにも書ける。ここで、 user_id を url の１部として受け取っている。-->
+<!--<a href="/users/:user_id/profile/new">Create your profile!</a>-->
+
 <!-- bootstrapのクラスtext-centerで簡単に真ん中に揃えられる -->
 <div class="jumbotron text-center">
     <h1>Welcome to Dev Match</h1>
