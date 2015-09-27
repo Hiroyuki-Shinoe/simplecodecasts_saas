@@ -3,7 +3,11 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  # belongs_to を記述したモデルのデータテーブルは、plan_id などのforeign keyを持つことになる
+  # 今回は、userテーブルからユーザーがbasic plan (plan_id =1)かpro plan (plan_id = 2)を判別したいので、
+  # user belongs_to plan、 plan has_many usersと書く。
   belongs_to :plan
+  has_one :profile
   
   # Userクラスの中で、定義されたstripe_card_token をapp/assets/javascripts/users.js で使用するために、
   # アクセッサ−を書いておく。
