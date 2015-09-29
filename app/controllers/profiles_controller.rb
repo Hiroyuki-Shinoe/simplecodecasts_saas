@@ -25,6 +25,7 @@ class ProfilesController < ApplicationController
             # flashハッシュにsuccessパラメーターと表示したいメッセージを渡し、
             # 他のページへ飛ばす。flashハッシュに入ったメッセージは飛ばされた先で表示される。
             flash[:success] = "Profile Updated!"
+            # user_path はusersControllerのshowアクションへ飛ばしている
             redirect_to user_path(params[:user_id])
         else
             # データベースへの保存に失敗したら、このcontroller内のnewアクションへ飛ばす。

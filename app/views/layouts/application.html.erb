@@ -60,6 +60,8 @@
 </nav>
 
 <div class="container">
+  <!-- layouts/application.html.erbにflashハッシュの記述をしておくことで、
+  どのviewファイルでもflashハッシュを使ったalertメッセージの表示ができるようにする-->
   <% flash.each do | key, value | %>
   <!-- "alert alert-success" と "alert alert-danger"はbootstrapのclass -->
     <%= content_tag :div, value, class: "alert alert-#{key}" %>
