@@ -23,6 +23,18 @@ Rails.application.routes.draw do
   
   # profileのrouteを記述する際に、users/:user_id/profile などのurlで
   # アクセスできるようにするためにnest化する。
+  # 各userは1つしかprofileを持たないので、resource :profile は単数形になっている。
+  # resourcesではなく、resourceと単数形で記述すると、
+  # create new edit show update destroyの6つのroutingを自動で行なってくれる。
+  # resourcesと記述する時と違い、profiles/:id へのアクセスに対するroutingは行われない。
+  # userは1つしかprofileを持たないため、idでprofileを指定する必要が無いから。
+  # post '/users/:user_id/profile' => 'profiles#create'
+  # get '/users/:user_id/profile/new' => 'profiles#new'
+  # get '/users/:user_id/profile/edit' => 'profiles#edit'
+  # get '/users/:user_id/profile' => 'profiles#show'
+  # patch '/users/:user_id/profile' => 'profiles#update'
+  # put '/users/:user_id/profile' => 'profiles#update'
+  # delete '/users/:user_id/profile' => 'profiles#destroy'
   resources :users do
     resource :profile
   end
