@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   # アクセッサ−を書いておく。
   attr_accessor :stripe_card_token
   
-  # app/controllers/users/rrgistrations_controller.rb に書かれているメソッド
+  # app/controllers/users/registrations_controller.rb に書かれているメソッド
   # save_with_paymentの定義を行う
   def save_with_payment
     # フォームで入力されたものが適切であれば、処理を実行する。
