@@ -8,9 +8,19 @@ class ProfilesController < ApplicationController
         @user = User.find(params[:user_id])
         # 下１行はparamsの説明のための見本
         # @variable = params[:hello]
-        # 上記で識別したユーザーのprofileを作成
+        
+        # builde_profileを用いて、上記で識別したユーザーのprofileを作成。
         # ここでは、まだ中身は無い。空の状態。
-        @profile = @user.build_profile
+        
+        # @profile = @user.build_profile
+        
+        # 上記の記述だと、new アクションにアクセスする度にuser_id が空のprofileオブジェクトを
+        # 作成して上書きしているので、create アクションでfirst_nameなどの中身の入ったprofileを作成した後、
+        # /uers/:user_id/profile/new へアクセスし、newアクションを呼び出すと、
+        # user_id のカラムの中身が無くなってしまう。
+        # /uers/:user_id/profile/newへアクセスするたびに、profileのuser_idカラムの中身無くなってしまうのを
+        # 避けるために、@userと関連付けた@profileを作成することをやめる
+        @profile = Profile.new
     end
     
     def create
@@ -35,6 +45,7 @@ class ProfilesController < ApplicationController
         #   render "new"
         #   render "new.html.erb"
         #   render action: "new"
+        #   render action: :new
         #   render action: "new.html.erb"
         #   render "profiles/new"
         #   render "profiles/new.html.erb"
