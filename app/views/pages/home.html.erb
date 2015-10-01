@@ -18,13 +18,13 @@
                     <%= link_to "View your profile", user_path(current_user), class: 'btn btn-default btn-lg btn-block' %>
                 
                 <% else %>
-            
+                    <p>Create your profile so that you can share your information with the community.</p>
                     <!-- userが自分のprofileを入力するフォームページへのリンクを作成する。
                     現在ログインしているユーザーを識別できるように、parameterとして current_user を書いておく。
                     current_user はuserオブジェクトの情報を取得するdevise gemのヘルパーメソッド。
                     if current_user はログインしている場合にのみ、表示するという記述。
                     ログアウトしていると表示されなくなる。-->
-                    <%= link_to "Create your profile!", new_user_profile_path(current_user), class: 'btn btn-default btn-lg btn-block' %> 
+                    <%= link_to "Create your profile", new_user_profile_path(current_user), class: 'btn btn-default btn-lg btn-block' %> 
                     <!--上の１行は下のようにも書ける。ここで、 user_id を url の１部として受け取っている。-->
                     <!--<a href="/users/:user_id/profile/new">Create your profile!</a>-->
                 
