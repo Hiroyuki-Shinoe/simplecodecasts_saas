@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
         # まず、profileを入力しようとしているuserがどのuserか識別する処理を書く
         # app/views/pages/home.html.erb の new_user_profile_path(current_user)
         # から渡されたuser情報から、params[:user_id] で user_idを取得し、
-        # どのuserかを識別する。
+        # どのuserかを識別し、@user変数に入れる。
         @user = User.find(params[:user_id])
         # 下１行はparamsの説明のための見本
         # @variable = params[:hello]
@@ -52,6 +52,16 @@ class ProfilesController < ApplicationController
         #   render template: "profiles/new"
         #   render template: "profiles/new.html.erb"
         end
+    end
+    
+    def edit
+        # まず、profileを入力しようとしているuserがどのuserか識別する処理を書く
+        # app/views/pages/home.html.erb の new_user_profile_path(current_user)
+        # から渡されたuser情報から、params[:user_id] で user_idを取得し、
+        # どのuserかを識別し、@user変数に入れる。
+        @user = User.find(params[:user_id])
+        # 上記記述で識別したuserのprofileデータを@profile変数に入れる。
+        @profile = @user.profile
     end
     
     private

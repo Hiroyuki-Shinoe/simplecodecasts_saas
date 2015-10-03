@@ -1,0 +1,73 @@
+<!--
+<form action="/users/:user_id/profile" method="post">
+    <div class="form-group">
+        <label for="profile_first_name">First name</label>
+        <input type="text" name="profile[first_name]" id="profile_first_name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="profile_last_name">Last name</label>
+        <input type="text" name="profile[last_name]" id="profile_last_name "class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="profile_job_title">Job title</label>
+        <select name="profile[job_title]" id="profile_job_title" class="form-control" >
+            <option value="Developer">Developer</option>
+            <option value="Entrepreneur">Entrepreneur</option>
+            <option value="Investor">Investor</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="profile_phone_number">Phone number</label>
+        <input type="text" name="phone_number" id="profile_phone_number" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="profile_contact_email">Contact email</label>
+        <input type="text" name="contact_email" id="profile_contact_email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="profile_description">Description</label>
+        <input type="text" name="description" id="profile_description" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input value="Update profile" type="submit" name="commit" class="btn btn-primary" />
+    </div>
+</form>
+--!>
+
+<!-- routes.rb で routingを行う際に、 resource :profileのように、
+複数形resourcesではなく、単数形でrouteを指定している場合は、
+form_forを使う際に、必ず url: user_profile_path のように、
+送る先の url を明示する必要がある。
+複数形 resources :profiles と指定している場合は、
+url の明示は必要ない。-->
+<%= form_for @profile, url: user_profile_path do |f| %>
+    <div class="form-group">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <%= f.label :job_title %>
+        <!--job_title は自由記述ではなく選択式にする。-->
+        <%= f.select :job_title, ['Developer', 'Entrepreneur', 'Investor'], {}, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <%= f.label :phone_number %>
+        <%= f.text_field :phone_number, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <%= f.label :contact_email %>
+        <%= f.text_field :contact_email, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: 'form-control' %>
+    </div>
+    
+    <div class="form-group">
+        <%= f.submit "Update Profile", class: 'btn btn-primary' %>
+    </div>
+<% end %>
