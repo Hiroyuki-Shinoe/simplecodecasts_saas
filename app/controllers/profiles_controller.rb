@@ -1,4 +1,22 @@
 class ProfilesController < ApplicationController
+    # サインインの有無に関わらず、あらゆるユーザーのプロファイルページに
+    # アクセスできてしまう状態を変える。
+    
+    # before_action はrailsが元々持つ機能。
+    # 書かれたcontroller内のあらゆるactionが起動する前に、指定の処理を行う。
+    # before_action :authenticate_user!, only: [:new, :edit] のように、
+    # 特定のaction実行前にのみ、指定の処理を行うようにもできる。
+    # authenticate_user! はdevise gemの機能。
+    # ユーザーがサインアップしているかどうかを確認し、
+    # していないなら、actionの処理を実行さず、
+    # ログインフォームページ /users/sign_inへ飛ばす。
+    # しかし、この記述だけでは、サインアップさえしていれば、
+    # 他のユーザーのプロファイルページやeditページにアクセスできてしまう。
+    before_action :authenticate_user!
+    # 上記記述で防げない他ユーザーページへのアクセスを防ぐ記述を書く。
+    # only_current_user は このcontroller内の private以下で定義を行う。
+    before_action :only_current_user
+    
     def new
         # form where a user can fill out own profile.
         # まず、profileを入力しようとしているuserがどのuserか識別する処理を書く
@@ -64,9 +82,31 @@ class ProfilesController < ApplicationController
         @profile = @user.profile
     end
     
+    def update
+        @user = User.find(params[:user_id])
+        @profile = @user.profile
+        # update_attributes はテーブルのカラムのデータを変更するメソッド。
+        if @profile.update_attributes(profile_params)
+            # flashハッシュに successとProfile Updated! をkeyとvalueのペアとして渡す。
+            flash[:success] = "Profile Updated!"
+            redirect_to user_path(params[:user_id])
+        else
+            render action: :edit
+        end
+    end
+    
     private
         def profile_params
             # strong parameterの記述。
             params.require(:profile).permit(:first_name, :last_name, :job_title, :phone_number, :contact_email, :description)
+        end
+        
+        def only_current_user
+            # urlからどのuserのページにアクセスしようとしているかを識別し、
+            # そのデータを@user変数に入れる。
+            @user = User.find(params[:user_id])
+            # アクセスしたurlのuser_idと現在サインインしているuserのuser_idが一致しない場合、
+            # root_urlへ飛ばす。
+            redirect_to(root_url) unless @user == current_user
         end
 end
