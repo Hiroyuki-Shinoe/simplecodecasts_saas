@@ -56,6 +56,14 @@ gem 'stripe', '1.16.1'
 # Use figaro to hide secret keys
 gem 'figaro', '1.0.0'
 
+# Use paperclip for image uploads
+# 画像をアップロードする機能を追加するgem　https://github.com/thoughtbot/paperclip#ruby-and-rails
+# 使用するには、まずImageMagicがインストールされていなければならない。
+# ImageMagicインストールの有無の確認には、ターミナルで identifyと入力。
+# 無いようなら、 brew install imagemagick でインストール。
+# pdfのアップロード機能も追加したいなら、 brew install gs も入力しておく。
+gem 'paperclip', '4.2.1'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '3.1.7'
 # Use unicorn as the app server

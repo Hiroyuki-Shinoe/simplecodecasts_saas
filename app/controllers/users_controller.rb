@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     # サインインしている人しか、各actionの処理を実行できなくする。
     # devise gemが持つ authenticate_user! はサインインしていないユーザーの場合、
-    #ログインフォームページ /users/sign_inへ飛ばす。
+    # ログインフォームページ /users/sign_inへ飛ばす。
     before_action :authenticate_user!
     
     def show
