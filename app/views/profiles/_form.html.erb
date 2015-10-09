@@ -40,7 +40,9 @@ form_forを使う際に、必ず url: user_profile_path のように、
 送る先の url を明示する必要がある。
 複数形 resources :profiles と指定している場合は、
 url の明示は必要ない。-->
-<%= form_for @profile, url: user_profile_path do |f| %>
+<!-- 画像アップロード用のgem papaerclipperを使うために、
+html: { multipart: true } を追加する。-->
+<%= form_for @profile, url: user_profile_path, html: { multipart: true } do |f| %>
     <div class="form-group">
         <%= f.label :first_name %>
         <%= f.text_field :first_name, class: 'form-control' %>
@@ -48,6 +50,11 @@ url の明示は必要ない。-->
     <div class="form-group">
         <%= f.label :last_name %>
         <%= f.text_field :last_name, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <%= f.label :avatar %>
+        <!-- 画像ファイルアップロード用の記述 -->
+        <%= f.file_field :avatar, class: 'form-control' %>
     </div>
     <div class="form-group">
         <%= f.label :job_title %>

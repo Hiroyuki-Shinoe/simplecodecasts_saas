@@ -44,6 +44,8 @@ class ProfilesController < ApplicationController
     def create
         @user = User.find(params[:user_id])
         # newアクションとは違い、中身のある@profileを作成する記述を書く。
+        # 同時に、userと関連づいたprofileデータを扱うため、
+        # メソッドnew ではなく、 メソッドbuild_profileを使う。
         # profile_paramsは下のprivate以下で定義を行う。
         @profile = @user.build_profile(profile_params)
         # フォームから渡されたデータの入った @profileをデータベースに保存すると同時に、
@@ -98,7 +100,7 @@ class ProfilesController < ApplicationController
     private
         def profile_params
             # strong parameterの記述。
-            params.require(:profile).permit(:first_name, :last_name, :job_title, :phone_number, :contact_email, :description)
+            params.require(:profile).permit(:first_name, :last_name,:avatar, :job_title, :phone_number, :contact_email, :description)
         end
         
         def only_current_user
