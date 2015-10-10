@@ -4,6 +4,10 @@ class UsersController < ApplicationController
     # ログインフォームページ /users/sign_inへ飛ばす。
     before_action :authenticate_user!
     
+    def index
+        @user = User.all
+    end
+    
     def show
         # ここでは、 :user_id ではなく、 :id と書く。
         # これは rake routes で確認できる show アクションのurl が
