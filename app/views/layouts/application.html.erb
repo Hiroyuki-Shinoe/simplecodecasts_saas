@@ -39,7 +39,7 @@
       <div class="nav navbar-nav navbar-right">
         <!--ログインの有無で表示させる内容を変える-->
         <!-- ここのifやelse、endを%=と書かず%だけにしているのは、htmlファイルの１部として表示させる必要が無いから -->
-        <% if current_user %>
+        <% if user_signed_in? %>
           <!-- destroy_user_session_pathは事前にprefixとして指定されている。rake routesで確認できる。-->
           <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-primary navbar-btn' %>
         <% else %>
@@ -51,6 +51,19 @@
         <% end %>
       </div>
       <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li><%= link_to "Community", users_path %></li>
+          <!-- user の データ変更フォームへのリンクを作成する。
+          profileではなく、userのデータテーブル email とpassword の変更及び、 
+          アカウントの削除を行うフォームへのリンク。
+          それらのフォームは devise gemが作成してくれているので、
+          devise gemが作成したrouteに従ってリンクを作成する。
+          なので、users_controllerのeditアクションへのrouteではない。-->
+          <!--<li><%= link_to "My Account", edit_user_path(id: current_user.id) %></li>-->
+          <!-- devise gemが作成したrouteに従い、 users/registrations#editへ飛ばし、
+          app/views/devise/registrations/edit.html.erb が呼び出されるようにする。-->
+          <li><%= link_to "My Account", edit_user_registration_path %></li>
+        <% end %>
         <li><%= link_to "About", about_path %></li>
         <!--<li><%= link_to "Contact Us", "/contacts/new" %></li>-->
         <li><%= link_to "Contact Us", new_contact_path %></li>
