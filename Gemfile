@@ -64,6 +64,10 @@ gem 'figaro', '1.0.0'
 # pdfのアップロード機能も追加したいなら、 brew install gs も入力しておく。
 gem 'paperclip', '4.2.1'
 
+# css3の新機能を古いブラウザー等で正常に機能するようにする記述法を自動で補完してくれるgem
+# https://github.com/ai/autoprefixer-rails
+gem 'autoprefixer-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '3.1.7'
 # Use unicorn as the app server

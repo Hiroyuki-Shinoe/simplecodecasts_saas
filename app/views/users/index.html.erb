@@ -1,1 +1,42 @@
-List all of our users
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <!-- list-unstyled は bootstrapのclass-->
+        <ul class="list-unstyled">
+            <% @users.each do |user| %>
+                <!-- profileを作成したuserのデータのみを表示するために、
+                if文で user.profileの中身が入っている場合にのみ、 <%= user.profile %>
+                を処理するようにする。-->
+                <% if user.profile %>
+                    <li>
+                        <!-- class指定の中に、＜%= cycle('','','') %>と書くことで、
+                        classを代わりばんこに指定することができる。-->
+                        <div class="well row <%= cycle('white-bg','') %>">
+                            <div class="col-sm-4 text-center">
+                                <!-- profileに画像を登録していないユーザーにエラー画面が表示されないように、
+                                if文で user.profile.avatarの中身が有る場合にのみ表示されるようにする。-->
+                                <% if user.profile.avatar %>
+                                    <!-- 各ユーザーの個別ページへのリンクを貼る。
+                                    user_path(:id)などのようなことをする必要は無く、
+                                    この場合は、 user だけで良い。-->
+                                    <%= link_to user do %>
+                                        <!--parperclipで画像データを取得する際に、元々の大きさ、:medium => "300x300>",
+                                        :thumb => "100x100>" の３つのサイズが自動的に使えるようになっている。
+                                        サイズの指定は、url()の()内に:mediumや:thumbを書く。
+                                        これらのサイズに定義は app/model/profile.rb の中で行われている。-->
+                                        <%= image_tag user.profile.avatar.url(:thumb), class: 'user-index-avatar' %>
+                                    <% end %>
+                                <% end %>
+                            </div>
+                            <div>
+                                <%= link_to user do %>
+                                    <h2><%= user.profile.first_name %> <%= user.profile.last_name %></h2>
+                                <% end %>
+                                <p><%= user.profile.job_title %></p>
+                            </div>
+                        </div>
+                    </li>
+                <% end %>
+            <% end %>
+        </ul>
+    </div>
+</div>
