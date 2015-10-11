@@ -6,7 +6,7 @@
     <!-- そこで、query stringを使って、サーバーサイドに識別情報を渡す記述を書く -->
     <!-- query stringとはクライアントからサーバーへパラメータを渡す時に使われるもの。
     URLの末尾に「?」マークを付け、続けて「名前=値」の形式で記述 -->
-    <%= hidden_field_tag 'pro', params[:plan] %>
+    <%= hidden_field_tag 'plan', params[:plan] %>
     <!--ここでは、new_user_registration_path(plan: @basic_plan.id)のリンクから来たら、value = 1 となる -->
     <!-- また、new_user_registration_path(plan: @pro_plan.id)のリンクから来たら、value = 2 となる -->
 
